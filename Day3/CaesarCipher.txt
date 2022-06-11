@@ -1,0 +1,36 @@
+class Result
+    {
+        public static String caesarCipher(String s, int k)
+        {
+            // Write your code here
+            String ans = "";
+            int t = 0;
+
+            foreach (char c in s.ToCharArray())
+            {
+                if (Char.IsLetter(c))
+                {
+                    if (Char.IsUpper(c))
+                    {
+                        t = ((int)(c + k - 65)) % 26;
+
+                        ans += ((char)(t + 65)).ToString();
+                    }
+                    else
+                    {
+                        if (Char.IsLower(c))
+                        {
+                            t = ((int)(c + k - 97)) % 26;
+
+                            ans += ((char)(t + 97)).ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    ans += c;
+                }
+            }
+            return ans;
+        }
+    }

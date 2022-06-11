@@ -1,0 +1,61 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'plusMinus' function below.
+     *
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static void plusMinus(List<int> arr)
+    {
+        double posnum=0;
+        double negnum=0;
+        double zeronum=0;
+        foreach(var a in arr)
+        {
+            if(a>0)
+            {
+                posnum++;
+            }
+            else if(a<0)
+            {
+                negnum++;
+            }
+            else
+            {
+                zeronum++;
+            }
+        }
+        Console.WriteLine((posnum/arr.Count).ToString("N6"));
+        Console.WriteLine((negnum/arr.Count).ToString("N6"));
+        Console.WriteLine((zeronum/arr.Count).ToString("N6"));
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        int n = Convert.ToInt32(Console.ReadLine().Trim());
+
+        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+
+        Result.plusMinus(arr);
+    }
+}
