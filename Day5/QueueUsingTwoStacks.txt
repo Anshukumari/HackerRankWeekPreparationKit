@@ -1,0 +1,99 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+
+class Queue
+{
+    
+    Stack stack1 = new Stack();
+    Stack stack2 = new Stack();
+
+    public void enQueue(int num)
+    {
+        /* if(stack1.Count == 0)
+         {
+             stack1.Push(num);
+         }
+         else
+         {
+             while(stack1.Count > 0)
+             {
+                 stack2.Push(stack1.Pop());
+             }
+             stack1.Push(num);
+             while (stack2.Count > 0)
+             {
+                 stack1.Push(stack2.Pop());
+             }
+         }*/
+        stack1.Push(num);
+    }
+
+    public void deQueue()
+    {
+        /* if (stack1.Count == 0)
+         {
+             //Console.WriteLine("Queue is empty");
+         }
+         else
+         {
+             stack1.Pop();
+         }*/
+        if (stack2.Count != 0)
+             stack2.Pop();
+        else
+        {
+            while (stack1.Count > 0)
+                stack2.Push(stack1.Pop());
+
+            stack2.Pop();
+        }
+    }
+
+
+    public void print()
+    {
+        if (stack2.Count != 0)
+            Console.WriteLine(stack2.Peek());
+        else
+        {
+            if (stack1.Count == 0)
+            {
+                Console.WriteLine("-*empty*-");
+                return;
+            }
+            while (stack1.Count > 0)
+                stack2.Push(stack1.Pop());
+
+            Console.WriteLine(stack2.Peek());
+        }
+    }
+
+}
+class Solution
+{
+    static void Main(String[] args)
+    {
+        Queue q = new Queue();
+        int numOfQueries = int.Parse(Console.ReadLine());
+        var query = new int[2];
+        for (int i = 0; i < numOfQueries; i++)
+        {
+            query = Console.ReadLine().Split().Select(x => int.Parse(x)).ToArray();
+
+            switch (query[0])
+            {
+                case 1:
+                    q.enQueue(query[1]);
+                    break;
+                case 2:
+                    q.deQueue();
+                    break;
+                default:
+                    q.print();
+                    break;
+            }
+        }
+    }
+}

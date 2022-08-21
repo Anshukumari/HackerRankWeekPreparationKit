@@ -1,0 +1,42 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
+class Solution
+{
+
+    static void Main(String[] args)
+    {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+
+        string str = "";
+        int q = Convert.ToInt32(Console.ReadLine());
+        Stack st = new Stack();
+        st.Push("");
+        for (int i = 0; i < q; i++)
+        {
+            string[] query = Console.ReadLine().Split();
+            int ops = Convert.ToInt32(query[0]);
+            switch (ops)
+            {
+                case 1:
+                    st.Push(str);
+                    str += query[1];
+                    break;
+                case 2:
+                    st.Push(str);
+                    str = str.Substring(0, str.ToString().Length - Convert.ToInt32(query[1]));
+                    break;
+                case 3:
+                    char c = str.ToString()[Convert.ToInt32(query[1]) - 1];
+                    Console.WriteLine(c);
+                    break;
+                case 4:
+                    str = st.Pop().ToString();
+                    break;
+            }
+        }
+    }
+}
