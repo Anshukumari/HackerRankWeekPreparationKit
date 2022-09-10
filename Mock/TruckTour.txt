@@ -1,0 +1,27 @@
+https://www.hackerrank.com/challenges/truck-tour/problem
+
+public static int truckTour(List<List<int>> petrolpumps)
+    {
+        int start = 0;
+        int depot = 0;
+        int i = 0;
+        
+        while(i < petrolpumps.Count)
+        {
+            int current = (start + i) % petrolpumps.Count;
+            depot += (petrolpumps[current][0] - petrolpumps[current][1]); 
+               
+            if(depot < 0)
+            {
+                depot = 0;
+                start++;
+                i = 0;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        
+        return start;
+    }

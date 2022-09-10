@@ -1,0 +1,26 @@
+https://www.hackerrank.com/challenges/pairs/problem 
+
+C#
+
+public static int pairs(int k, List<int> arr)
+    {        
+        HashSet<int> hSet = new HashSet<int>();        
+        int count = 0;
+        
+        arr.Sort();
+        
+        foreach(var item in arr){
+            
+            int complement = item + k;
+            
+            if(hSet.Contains(item)){
+                count++;
+                hSet.Add(complement);
+            }else{
+                hSet.Add(complement);
+            }
+            
+        }
+        
+        return count;
+    }

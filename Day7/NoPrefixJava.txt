@@ -1,0 +1,27 @@
+public static void noPrefix(List<String> words) {
+    // Write your code here
+        Hashtable<String, Integer> prefixes = new Hashtable<>();
+        Hashtable<String,Integer> wordsChecked = new Hashtable<>();
+
+        for (String word: words){
+            StringBuilder currAccuPrefixes = new StringBuilder();
+            if (prefixes.get(word)!=null){
+                System.out.println("BAD SET");
+                System.out.println(word);
+                return;
+            }
+            for(char c : word.toCharArray()){
+                currAccuPrefixes.append(c);
+                prefixes.put(currAccuPrefixes.toString(),1);
+                if (wordsChecked.get(currAccuPrefixes.toString())!=null){
+                    System.out.println("BAD SET");
+                    System.out.println(word);
+                    return;
+                }
+            }
+            wordsChecked.put(word,1);
+
+        }
+        System.out.println("GOOD SET");
+        
+    }

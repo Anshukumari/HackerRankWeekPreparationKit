@@ -1,0 +1,31 @@
+public static void noPrefix(List<string> words)
+    {
+        HashSet<string> allPrefix = new HashSet<string>();
+        HashSet<string> allWords = new HashSet<string>();
+        
+        foreach(var word in words)
+        {
+            if(allPrefix.Contains(word))//there is a word that this word is a prefix to
+            {
+                Console.WriteLine("BAD SET");
+                Console.WriteLine(word);                          
+                return;
+            }
+            int i = word.Length;
+            while(i > 0)
+            {
+                var prefix = word.Substring(0, i);
+                if(allWords.Contains(prefix))//there is a word that is a prefix to this word
+                {
+                    Console.WriteLine("BAD SET");
+                    Console.WriteLine(word);                          
+                    return;
+                }
+                allPrefix.Add(prefix);
+                i--;
+            }
+            allWords.Add(word);
+            
+        }
+        Console.WriteLine("GOOD SET");
+    }
